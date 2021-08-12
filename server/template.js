@@ -1,7 +1,6 @@
 import files from './files';
 import environment from './environment';
 import project from './project';
-import settings from './settings';
 import integrities from './integrities';
 import {absolute, cdn, cdnOrAbsolute} from './links';
 import { sanitizeString } from '../shared/sanitizeString';
@@ -11,7 +10,7 @@ export default function({head, body, context, instances}) {
   const canonical = absolute(page.canonical || router.url);
   const image = cdnOrAbsolute(page.image);
   const serializableContext = {};
-  const blacklist = ['scope', 'router', 'page', 'environment', 'settings', 'worker', 'params', 'project', 'instances'];
+  const blacklist = ['scope', 'router', 'page', 'environment', 'worker', 'params', 'project', 'instances'];
   for(const [key, value] of Object.entries(context)) {
     if(!blacklist.includes(key) && typeof(value) !== 'function') {
       serializableContext[key] = value;
@@ -60,7 +59,6 @@ export default function({head, body, context, instances}) {
       window.page = ${JSON.stringify(page)};
       window.instances = ${sanitizeString(JSON.stringify(environment.mode === 'spa' ? {} : serializableInstances)) };
       window.environment = ${JSON.stringify(environment)};
-      window.settings = ${JSON.stringify(settings)};
       window.worker = ${JSON.stringify(worker)};
       window.params = ${JSON.stringify(params)};
       window.project = ${JSON.stringify(project)};

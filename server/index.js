@@ -6,7 +6,6 @@ import generator from './generator';
 import element from '../shared/element';
 import project from './project';
 import environment from './environment';
-import settings, {loadSettings} from './settings';
 import secrets, {loadSecrets} from './secrets';
 import {freezeConfigurable} from './configurable';
 import worker from './worker';
@@ -20,7 +19,6 @@ import { normalize } from 'path';
 context.server = server;
 context.project = project;
 context.environment = environment;
-context.settings = settings;
 context.secrets = secrets;
 context.worker = worker;
 
@@ -41,13 +39,11 @@ class Nullstack {
       }
       server.ready = (async function() {
         generator.starter = () => element(Starter);
-        loadSettings();
         loadSecrets();
         typeof(Starter.start) === 'function' && await Starter.start(context);
         for(const starter of starters) {
           starter.start(context)
         }
-        freezeConfigurable(settings);
         freezeConfigurable(secrets);
         Object.freeze(worker);
         Object.freeze(project);

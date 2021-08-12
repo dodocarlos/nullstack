@@ -9,7 +9,6 @@ import instanceProxyHandler from './instanceProxyHandler';
 import page from './page';
 import environment from './environment';
 import params, {updateParams} from './params';
-import settings from './settings';
 import worker from './worker';
 import project from './project';
 import invoke from './invoke';
@@ -23,7 +22,6 @@ import './liveReload';
 
 context.page = page;
 context.router = router;
-context.settings = settings;
 context.worker = worker;
 context.params = params;
 context.project = project;

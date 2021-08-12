@@ -7,7 +7,6 @@ import ContextProject from './ContextProject';
 import ServerFunctions from './ServerFunctions';
 import Context from './Context';
 import ContextSecrets from './ContextSecrets';
-import ContextSettings from './ContextSettings';
 import ContextEnvironment from './ContextEnvironment';
 import ContextWorker from './ContextWorker';
 import InstanceKey from './InstanceKey';
@@ -42,7 +41,6 @@ class Application extends Nullstack {
   static async start(context) {
     ContextProject.start(context);
     ContextSecrets.start(context);
-    ContextSettings.start(context);
     ContextWorker.start(context);
     ServerRequestAndResponse.start(context);
   }
@@ -69,7 +67,6 @@ class Application extends Nullstack {
         <ServerFunctions route="/server-functions" />
         <Context route="/context" />
         <ContextSecrets route="/context-secrets" />
-        <ContextSettings route="/context-settings" />
         <ContextEnvironment route="/context-environment" />
         <ContextWorker route="/context-worker" />
         <InstanceKey route="/instance-key" />

@@ -2,7 +2,6 @@ import {existsSync, readFileSync} from 'fs';
 import path from 'path';
 import environment from './environment';
 import project from './project';
-import settings from './settings';
 import files from './files';
 
 import load from '!!raw-loader!../workers/load.js';
@@ -44,7 +43,7 @@ worker.queues = new Proxy({}, queuesProxyHandler);
 export function generateServiceWorker() {
   if(files['service-worker.js']) return files['service-worker.js'];
   const sources = [];
-  const context = {environment, project, settings, worker};
+  const context = {environment, project, worker};
   let original = '';
   const file = path.join(__dirname, '../', 'public', 'service-worker.js');
   if(existsSync(file)) {

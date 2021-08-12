@@ -5,9 +5,8 @@ class ContextSecrets extends Nullstack {
   secrets = {};
 
   static async start({secrets}) {
-    secrets.anyEnvironment = 'secrets';
-    secrets.development.developmentOnly = 'secrets';
-    secrets.production.productionOnly = 'secrets';
+    secrets.someSecretValue = 'someSecretValue';
+    secrets.anotherSecretValue = 'anotherSecretValue';
   }
 
   static async leakSecrets({secrets}) {
@@ -24,9 +23,8 @@ class ContextSecrets extends Nullstack {
         <div data-secrets={!!secrets} />
         <div data-key={this.secrets.key} />
         <div data-camelized-key={this.secrets.camelizedKey} />
-        <div data-any-environment={this.secrets.anyEnvironment} />
-        <div data-development-only={this.secrets.developmentOnly} />
-        <div data-production-only={this.secrets.productionOnly} />
+        <div some-secret-value={this.secrets.someSecretValue} />
+        <div another-secret-value={this.secrets.anotherSecretValue} />
       </div>
     )
   }

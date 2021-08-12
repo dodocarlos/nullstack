@@ -27,20 +27,13 @@ describe('ContextSecrets', () => {
   });
 
   test('keys assigned to secrets stay in the context of development and production environments', async () => {
-    const element = await page.$('[data-any-environment="secrets"]');
+    const element = await page.$('[some-secret-value="someSecretValue"]');
     expect(element).toBeTruthy();
   });
-
-  test('keys assigned to development stay only in the context of the development environment', async () => {
-    const element = await page.$('[data-development-only="secrets"]');
+  test('keys assigned to secrets stay in the context of development and production environments', async () => {
+    const element = await page.$('[another-secret-value="anotherSecretValue"]');
     expect(element).toBeTruthy();
   });
-
-  test('keys assigned to production stay only in the context of the production environment', async () => {
-    const element = await page.$('[data-production-only="secrets"]');
-    expect(element).toBeFalsy();
-  });
-
 });
 
 afterAll(async () => {
